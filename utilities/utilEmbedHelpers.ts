@@ -244,7 +244,7 @@ export function errorEmbed(content: string) {
 
   embed
     .setColor(Colors.Red)
-    .setAuthor({ name: 'RoleBot', iconURL: AVATAR_URL })
+    .setAuthor({ name: 'RoleBot', iconURL: AVATAR_URL || undefined })
     .setTitle(`Encountered an error`)
     .setDescription(codeBlock('diff', content))
     .setTimestamp(new Date());
@@ -258,7 +258,7 @@ export async function guildConfig(config: IGuildConfig) {
 
   embed
     .setColor(Colors.Red)
-    .setAuthor({ name: 'RoleBot', iconURL: AVATAR_URL })
+    .setAuthor({ name: 'RoleBot', iconURL: AVATAR_URL || undefined })
     .setTitle('Server configuration.')
     .setDescription(
       description +

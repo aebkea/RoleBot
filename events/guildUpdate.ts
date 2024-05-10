@@ -30,7 +30,7 @@ export const guildUpdate = async (
     embed
       .setColor(color)
       .setTitle(`**${type} Guild**`)
-      .setThumbnail(guild.iconURL() || '')
+      .setThumbnail(guild.iconURL())
       .setDescription(guild.name)
       .addFields(
         {
