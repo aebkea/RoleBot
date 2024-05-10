@@ -168,19 +168,19 @@ export default class RoleBot extends Discord.Client {
     this.user.setPresence({
       activities: [
         {
-          name: 'Use /help for commands!',
+          name: 'lectures on quadratic reciprocity',
           type: Discord.ActivityType.Listening,
         },
         {
-          name: 'Check out rolebot.gg!',
+          name: 'lo-fi beats to grind math to',
           type: Discord.ActivityType.Streaming,
         },
         {
-          name: 'I use slash commands!',
+          name: 'kisonecat on YouTube!',
           type: Discord.ActivityType.Watching,
         },
       ],
-      status: 'dnd',
+      status: 'online',
     });
   };
 }
