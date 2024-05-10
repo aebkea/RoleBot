@@ -5,7 +5,7 @@ import { InteractionHandler } from './services/interactionHandler';
 import { LogService } from './services/logService';
 import { PermissionService } from './services/permissionService';
 import { ReactionHandler } from './services/reactionHandler';
-import { createConnection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { Category, GuildConfig, JoinRole, ReactMessage, ReactRole } from './database/entities';
 
 import * as Discord from 'discord.js';
@@ -125,21 +125,40 @@ export default class RoleBot extends Discord.Client {
      * URL points to my home server.
      * SYNC_DB should only be true if on dev.
      */
-    await createConnection({
+    const dataSource = new DataSource({
       type: 'postgres',
-      url: config.POSTGRES_URL,
+      // url: config.POSTGRES_URL,
+      host: config.DB_HOST,
+      port: Number(config.DB_PORT),
+      username: config.DB_USER,
+      password: config.DB_PASS,
+      database: config.DB_NAME,
       synchronize: config.SYNC_DB,
       entities: [ReactMessage, ReactRole, Category, GuildConfig, JoinRole],
-    })
+      ssl: {
+        rejectUnauthorized: false,
+        ca: config.DB_CERT,
+      },
+    });
+    await dataSource.initialize()
       .then(() => this.log.debug(`Successfully connected to postgres DB.`))
       .catch((e) => this.log.critical(`Failed to connect to postgres\n${e}`));
+    // await createConnection({
+    //   type: 'postgres',
+    //   url: config.POSTGRES_URL,
+    //   synchronize: config.SYNC_DB,
+    //   entities: [ReactMessage, ReactRole, Category, GuildConfig, JoinRole],
+
+    // })
+    //   .then(() => this.log.debug(`Successfully connected to postgres DB.`))
+    //   .catch((e) => this.log.critical(`Failed to connect to postgres\n${e}`));
 
     this.log.info(`Connecting to Discord with bot token.`);
     await this.login(this.config.TOKEN);
     this.log.info('Bot connected.');
 
     // 741682757486510081 - New RoleBot application.
-    await buildNewCommands(true, config.CLIENT_ID !== '741682757486510081');
+    await buildNewCommands(true, false);
   };
 
   private updatePresence = () => {

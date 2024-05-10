@@ -10,6 +10,11 @@ export const INVITE_URL = `https://discord.com/oauth2/authorize?client_id=741682
 // .env stuff
 export const TOKEN: string = process.env.TOKEN || '';
 export const DB_NAME = process.env.DB_NAME || 'rolebotBeta';
+export const DB_HOST = process.env.DB_HOST || '';
+export const DB_PORT = process.env.DB_PORT || 0;
+export const DB_USER = process.env.DB_USER || '';
+export const DB_PASS = process.env.DB_PASS || '';
+export const DB_CERT = process.env.DB_CERT || '';
 export const POSTGRES_URL = `${process.env.POSTGRES_URL}${DB_NAME}` || '';
 export const SHARD_COUNT = Number(process.env.SHARD_COUNT) || 6;
 export const SERVER_ID = '567819334852804626';

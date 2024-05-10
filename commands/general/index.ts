@@ -4,3 +4,4 @@ export { ConfigBaseCommand } from './config/index';
 export { EvalBaseCommand } from './eval';
 export { TutorialBaseCommand } from './tutorial';
 export { HelpBaseCommand } from './help';
+export { MessageBaseCommand } from './message/index';

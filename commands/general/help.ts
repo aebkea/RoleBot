@@ -70,10 +70,10 @@ export class HelpBaseCommand extends SlashCommand {
       .setColor(Colors.Blurple)
       .setAuthor({
         name: user.username,
-        iconURL: user.avatarURL() || '',
+        iconURL: user.avatarURL() || undefined,
         url: 'https://rolebot.gg',
       })
-      .setThumbnail(user.avatarURL() || '')
+      .setThumbnail(user.avatarURL())
       .setFooter({
         text: `Replying to: ${interaction.member?.user.username}`,
       })
